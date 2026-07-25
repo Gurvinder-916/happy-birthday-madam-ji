@@ -376,9 +376,6 @@ if(continueCake){
    Candle Blow System
 ========================= */
 
-const micButton =
-document.getElementById("micButton");
-
 
 let candlesBlown = false;
 
