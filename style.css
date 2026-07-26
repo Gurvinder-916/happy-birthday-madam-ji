@@ -1164,3 +1164,40 @@ button:active {
     transition:1s;
 
 }
+.name-heart-area {
+
+    position:relative;
+
+}
+
+
+.name-heart {
+
+    position:absolute;
+
+    font-size:20px;
+
+    animation: heartAround 3s linear infinite;
+
+}
+
+
+@keyframes heartAround {
+
+    from {
+
+        transform:translateY(0);
+
+        opacity:1;
+
+    }
+
+    to {
+
+        transform:translateY(-120px);
+
+        opacity:0;
+
+    }
+
+}
