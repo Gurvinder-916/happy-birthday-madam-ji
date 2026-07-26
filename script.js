@@ -879,3 +879,63 @@ heart.remove();
 
 
 setInterval(createNameHeart,500);
+/* =========================
+   SECRET MESSAGE
+========================= */
+
+
+const secretBtn =
+document.getElementById("secretBtn");
+
+
+const secretMessage =
+document.getElementById("secretMessage");
+
+
+if(secretBtn){
+
+
+secretBtn.addEventListener("click",()=>{
+
+
+secretMessage.classList.remove("hidden");
+
+
+secretMessage.classList.add("show");
+
+
+});
+
+
+}
+/* =========================
+   WHATSAPP SHARE
+========================= */
+
+
+const shareBtn =
+document.getElementById("shareBtn");
+
+
+if(shareBtn){
+
+
+shareBtn.addEventListener("click",()=>{
+
+
+let text =
+"Happy Birthday Prativha ji ❤️ Check out this special birthday surprise!";
+
+
+let url =
+"https://wa.me/?text="
++ encodeURIComponent(text);
+
+
+window.open(url,"_blank");
+
+
+});
+
+
+}
