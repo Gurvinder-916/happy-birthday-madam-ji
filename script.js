@@ -9,6 +9,17 @@ window.addEventListener("load", () => {
 
     setTimeout(() => {
 
+    if(loader){
+        loader.style.display = "none";
+    }
+
+    if(mainContent){
+        mainContent.classList.remove("hidden");
+        mainContent.classList.add("show");
+    }
+
+},2500);
+
         loader.style.display = "none";
         mainContent.classList.remove("hidden");
         mainContent.classList.add("show");
