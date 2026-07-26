@@ -1201,3 +1201,43 @@ button:active {
     }
 
 }
+/* =========================
+   HANDWRITTEN LETTER
+========================= */
+
+
+.handwritten-letter{
+
+    background:#fff8f0;
+
+    color:#b23a48;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    font-family:'Dancing Script',cursive;
+
+    font-size:28px;
+
+    line-height:1.8;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.2);
+
+    border:2px solid #ffd6d6;
+
+}
+
+
+.handwritten-letter::before{
+
+    content:"❤️";
+
+    display:block;
+
+    font-size:35px;
+
+    margin-bottom:10px;
+
+}
