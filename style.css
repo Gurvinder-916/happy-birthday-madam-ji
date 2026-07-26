@@ -1348,3 +1348,204 @@ border-radius:20px;
 font-size:20px;
 
 }
+/* =========================
+   INTRO SCREEN
+========================= */
+
+#intro {
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    linear-gradient(135deg,#ff758c,#ff7eb3);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:10000;
+
+    animation:introHide 4s forwards;
+
+}
+
+
+#intro h1 {
+
+    font-family:'Dancing Script',cursive;
+
+    font-size:60px;
+
+}
+
+
+#intro p {
+
+    margin-top:20px;
+
+    font-size:20px;
+
+}
+
+
+@keyframes introHide{
+
+0%,70%{
+
+opacity:1;
+
+}
+
+100%{
+
+opacity:0;
+
+visibility:hidden;
+
+}
+
+}
+/* =========================
+   ROSE PETALS
+========================= */
+
+
+.petal {
+
+position:fixed;
+
+top:-20px;
+
+font-size:25px;
+
+animation:fallPetal 8s linear forwards;
+
+z-index:5;
+
+}
+
+
+@keyframes fallPetal{
+
+0%{
+
+transform:
+translateY(0)
+rotate(0deg);
+
+}
+
+100%{
+
+transform:
+translateY(110vh)
+rotate(360deg);
+
+opacity:0;
+
+}
+
+}
+/* =========================
+   LOVE METER
+========================= */
+
+
+.love-meter{
+
+background:white;
+
+color:#ff4d6d;
+
+max-width:500px;
+
+margin:40px auto;
+
+padding:30px;
+
+border-radius:20px;
+
+}
+
+
+.meter{
+
+height:25px;
+
+background:#eee;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+
+#loveFill{
+
+height:100%;
+
+width:0;
+
+background:#ff4d6d;
+
+border-radius:20px;
+
+animation:fillLove 3s forwards;
+
+}
+
+
+@keyframes fillLove{
+
+to{
+
+width:100%;
+
+}
+
+}
+/* =========================
+   CANDLE GLOW
+========================= */
+
+
+.flame{
+
+box-shadow:
+
+0 0 10px orange,
+
+0 0 25px yellow,
+
+0 0 40px orange;
+
+animation:
+
+flameGlow .8s infinite alternate;
+
+}
+
+
+@keyframes flameGlow{
+
+from{
+
+transform:scale(1);
+
+}
+
+
+to{
+
+transform:scale(1.2);
+
+}
+
+}
