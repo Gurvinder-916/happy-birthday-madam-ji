@@ -28,28 +28,90 @@ const musicBtn = document.getElementById("musicBtn");
 let musicPlaying = false;
 
 
-musicBtn.addEventListener("click", () => {
+/* =========================
+   SMOOTH MUSIC FADE
+========================= */
+
+music.volume = 0;
 
 
-    if (musicPlaying) {
+function fadeInMusic(){
 
-        music.pause();
+    music.play();
+
+    let volume = 0;
+
+    let fade = setInterval(()=>{
+
+        if(volume < 1){
+
+            volume += 0.05;
+
+            music.volume = volume;
+
+        }
+        else{
+
+            clearInterval(fade);
+
+        }
+
+    },100);
+
+}
+
+
+
+function fadeOutMusic(){
+
+    let volume = music.volume;
+
+
+    let fade = setInterval(()=>{
+
+        if(volume > 0){
+
+            volume -= 0.05;
+
+            music.volume = volume;
+
+        }
+        else{
+
+            music.pause();
+
+            clearInterval(fade);
+
+        }
+
+    },100);
+
+}
+
+
+
+musicBtn.addEventListener("click",()=>{
+
+
+    if(musicPlaying){
+
+        fadeOutMusic();
 
         musicBtn.innerHTML =
         '<i class="fa-solid fa-music"></i>';
 
-        musicPlaying = false;
+        musicPlaying=false;
 
     }
 
-    else {
+    else{
 
-        music.play();
+        fadeInMusic();
 
         musicBtn.innerHTML =
         '<i class="fa-solid fa-pause"></i>';
 
-        musicPlaying = true;
+        musicPlaying=true;
 
     }
 
@@ -117,15 +179,21 @@ envelope.addEventListener("click", () => {
 ========================= */
 
 
-const message = `Happy Birthday ❤️
+const message = `Happy Birthday Bachhaa ❤️
 
-You are a truly special person.
-Your smile makes every moment brighter.
+Today is your special day and I just want you to know
+how precious and amazing you are.
 
-I hope your day is filled with happiness,
-love and beautiful memories.
+Your smile brings happiness, your presence makes
+beautiful memories, and your kindness makes you
+truly special.
 
-Always keep smiling ✨`;
+May your life always be filled with love, success,
+happiness and endless reasons to smile.
+
+Keep shining always ✨
+
+With lots of love ❤️`;
 
 
 let typingIndex = 0;
