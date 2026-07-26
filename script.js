@@ -780,17 +780,17 @@ document.getElementById("slideImage");
 
 const photos = [
 
-"images/photo1.jpg",
+"images/1.jpg",
 
-"images/photo2.jpg",
+"images/2.jpg",
 
-"images/photo3.jpg",
+"images/3.jpg",
 
-"images/photo4.jpg",
+"images/4.jpg",
 
-"images/photo5.jpg",
+"images/5.jpg",
 
-"images/photo6.jpg"
+"images/6.jpg"
 
 ];
 
