@@ -762,3 +762,52 @@ setInterval(()=>{
 
 
 }
+/* =========================
+   NAME HEART PARTICLES
+========================= */
+
+
+const heartBox =
+document.getElementById("nameHearts");
+
+
+function createNameHeart(){
+
+
+if(heartBox){
+
+
+let heart =
+document.createElement("span");
+
+
+heart.className="name-heart";
+
+heart.innerHTML="❤️";
+
+
+heart.style.left =
+Math.random()*200+"px";
+
+
+heart.style.animationDuration =
+(2+Math.random()*2)+"s";
+
+
+heartBox.appendChild(heart);
+
+
+setTimeout(()=>{
+
+heart.remove();
+
+},3000);
+
+
+}
+
+
+}
+
+
+setInterval(createNameHeart,500);
