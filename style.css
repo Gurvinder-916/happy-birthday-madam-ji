@@ -1,0 +1,1041 @@
+/* =========================
+   RESET & BASIC SETTINGS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #fff;
+    overflow-x: hidden;
+
+}
+
+
+/* =========================
+   HIDDEN ELEMENTS
+========================= */
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+/* =========================
+   LOADER
+========================= */
+
+#loader {
+
+    position: fixed;
+    inset: 0;
+    background: #ff6b81;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+
+}
+
+
+.loader-heart {
+
+    font-size: 70px;
+    animation: heartbeat 1s infinite;
+
+}
+
+
+#loader h2 {
+
+    margin-top: 20px;
+    font-size: 22px;
+
+}
+
+
+@keyframes heartbeat {
+
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+#musicBtn {
+
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: white;
+    color: #ff4d6d;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    z-index: 1000;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+#mainContent {
+
+    width: 100%;
+    text-align: center;
+
+}
+
+
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+}
+
+
+.birthday-title {
+
+    font-family: 'Dancing Script', cursive;
+
+    font-size: clamp(45px,8vw,80px);
+
+    animation: fadeDown 1.5s ease;
+
+}
+
+
+.subtitle {
+
+    margin: 20px 0;
+
+    font-size: 20px;
+
+}
+
+
+.primary-btn {
+
+    padding: 14px 30px;
+
+    border-radius: 30px;
+
+    border: none;
+
+    background: #fff;
+
+    color: #ff4d6d;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+}
+
+
+.primary-btn:hover {
+
+    transform: scale(1.08);
+
+}
+
+
+@keyframes fadeDown {
+
+    from {
+
+        opacity:0;
+        transform:translateY(-40px);
+
+    }
+
+    to {
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+/* =========================
+   ENVELOPE SECTION
+========================= */
+
+#envelopeSection {
+
+    min-height: 80vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.envelope-wrapper {
+
+    perspective: 1000px;
+
+}
+
+
+.envelope {
+
+    width: 300px;
+    height: 200px;
+
+    background: #ff4d6d;
+
+    position: relative;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    box-shadow: 0 15px 30px rgba(0,0,0,.25);
+
+    transition: 1s;
+
+}
+
+
+.envelope::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 110px solid #ff758f;
+
+    transform-origin: top;
+
+    transition: 1s;
+
+}
+
+
+.envelope.open::before {
+
+    transform: rotateX(180deg);
+
+}
+
+
+.letter {
+
+    position: absolute;
+
+    width: 85%;
+    height: 70%;
+
+    background: white;
+
+    color: #ff4d6d;
+
+    left: 7.5%;
+    top: 15%;
+
+    border-radius: 8px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.letter h2 {
+
+    font-family: 'Dancing Script', cursive;
+
+    font-size: 35px;
+
+}
+
+
+/* =========================
+   LETTER CARD
+========================= */
+
+
+.letter-card {
+
+    background: rgba(255,255,255,.95);
+
+    color: #ff4d6d;
+
+    width: 90%;
+
+    max-width: 600px;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+
+}
+
+
+.letter-card h2 {
+
+    font-family: 'Dancing Script', cursive;
+
+    font-size: 45px;
+
+    margin-bottom: 20px;
+
+}
+
+
+#typewriter {
+
+    min-height: 120px;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================
+   GALLERY
+========================= */
+
+
+#gallerySection {
+
+    padding: 50px 20px;
+
+}
+
+
+.gallery {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+
+    gap: 20px;
+
+    max-width: 900px;
+
+    margin: 30px auto;
+
+}
+
+
+.photo {
+
+    overflow: hidden;
+
+    border-radius: 15px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.25);
+
+}
+
+
+.photo img {
+
+    width: 100%;
+
+    height: 200px;
+
+    object-fit: cover;
+
+    transition: .5s;
+
+}
+
+
+.photo:hover img {
+
+    transform: scale(1.1);
+
+}
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+
+.heart {
+
+    position: fixed;
+
+    bottom: -20px;
+
+    font-size: 25px;
+
+    animation: floatHeart 6s linear infinite;
+
+    z-index: -1;
+
+}
+
+
+@keyframes floatHeart {
+
+    0% {
+
+        transform: translateY(0) rotate(0deg);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform: translateY(-110vh) rotate(360deg);
+
+        opacity: 0;
+
+    }
+
+}
+/* =========================
+   CAKE SECTION
+========================= */
+
+#cakeSection {
+
+    padding: 60px 20px;
+
+}
+
+
+.cake-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin: 40px 0;
+
+}
+
+
+.cake {
+
+    position: relative;
+
+    width: 220px;
+
+    height: 180px;
+
+}
+
+
+.cake-body {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 220px;
+
+    height: 100px;
+
+    background: #ff8fab;
+
+    border-radius: 15px 15px 25px 25px;
+
+}
+
+
+.cake-top {
+
+    position: absolute;
+
+    top: 40px;
+
+    width: 220px;
+
+    height: 40px;
+
+    background: #ffc2d1;
+
+    border-radius: 50%;
+
+}
+
+
+.icing {
+
+    position: absolute;
+
+    top: 60px;
+
+    width: 220px;
+
+    height: 30px;
+
+    background: white;
+
+    border-radius: 50%;
+
+}
+
+
+.candles {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 55px;
+
+    display: flex;
+
+    gap: 35px;
+
+}
+
+
+.candle {
+
+    width: 12px;
+
+    height: 45px;
+
+    background: #ffd166;
+
+    position: relative;
+
+    border-radius: 5px;
+
+}
+
+
+.flame {
+
+    position: absolute;
+
+    width: 15px;
+
+    height: 22px;
+
+    background: orange;
+
+    border-radius: 50%;
+
+    top: -22px;
+
+    left: -1px;
+
+    animation: flameMove .7s infinite alternate;
+
+}
+
+
+@keyframes flameMove {
+
+    from {
+
+        transform: scale(1);
+
+    }
+
+    to {
+
+        transform: scale(1.3);
+
+    }
+
+}
+
+
+.candle.off .flame {
+
+    display: none;
+
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+
+#countdownSection {
+
+    padding: 50px 20px;
+
+}
+
+
+.countdown-box {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 30px;
+
+}
+
+
+.count-item {
+
+    background: rgba(255,255,255,.2);
+
+    backdrop-filter: blur(10px);
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    min-width: 90px;
+
+}
+
+
+.count-item span {
+
+    font-size: 35px;
+
+    font-weight: 700;
+
+}
+
+
+.count-item p {
+
+    margin-top: 5px;
+
+}
+
+
+/* =========================
+   WISH SECTION
+========================= */
+
+
+#wishesSection {
+
+    padding: 50px 20px;
+
+}
+
+
+.wish-card {
+
+    background: white;
+
+    color: #ff4d6d;
+
+    max-width: 650px;
+
+    margin: 30px auto;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    line-height: 1.8;
+
+    font-size: 18px;
+
+}
+
+
+/* =========================
+   FINAL SURPRISE
+========================= */
+
+
+#finalSection {
+
+    padding: 60px 20px;
+
+}
+
+
+.final-card {
+
+    background: rgba(255,255,255,.95);
+
+    color: #ff4d6d;
+
+    max-width: 650px;
+
+    margin: auto;
+
+    padding: 40px;
+
+    border-radius: 25px;
+
+}
+
+
+.final-card h1 {
+
+    font-family: 'Dancing Script', cursive;
+
+    font-size: 45px;
+
+}
+
+
+.gift-box {
+
+    font-size: 100px;
+
+    margin: 30px;
+
+    cursor: pointer;
+
+    animation: giftBounce 1.5s infinite;
+
+}
+
+
+@keyframes giftBounce {
+
+    50% {
+
+        transform: translateY(-15px);
+
+    }
+
+}
+
+
+/* =========================
+   LOVE CARD
+========================= */
+
+
+#loveSection {
+
+    padding: 40px 20px;
+
+}
+
+
+.love-card {
+
+    background: rgba(255,255,255,.95);
+
+    color: #ff4d6d;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    max-width: 600px;
+
+    margin: auto;
+
+}
+
+
+footer {
+
+    padding: 25px;
+
+    font-size: 14px;
+
+}
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti {
+
+    position: fixed;
+
+    width: 10px;
+
+    height: 20px;
+
+    top: -20px;
+
+    animation: fall 4s linear forwards;
+
+    z-index: 999;
+
+}
+
+
+@keyframes fall {
+
+    from {
+
+        transform: translateY(0) rotate(0deg);
+
+    }
+
+    to {
+
+        transform: translateY(110vh) rotate(720deg);
+
+    }
+
+}
+
+
+/* =========================
+   FIREWORKS
+========================= */
+
+
+.firework {
+
+    position: fixed;
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    animation: explode 1s ease-out forwards;
+
+}
+
+
+@keyframes explode {
+
+    0% {
+
+        transform: scale(1);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform: scale(15);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================
+   SMOOTH APPEAR ANIMATION
+========================= */
+
+
+.show {
+
+    animation: appear 1s ease forwards;
+
+}
+
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(40px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+
+@media (max-width:600px) {
+
+
+    .birthday-title {
+
+        font-size: 45px;
+
+    }
+
+
+    .subtitle {
+
+        font-size: 17px;
+
+    }
+
+
+    .envelope {
+
+        width: 260px;
+
+        height: 170px;
+
+    }
+
+
+    .envelope::before {
+
+        border-left-width:130px;
+
+        border-right-width:130px;
+
+        border-top-width:90px;
+
+    }
+
+
+    .letter-card h2 {
+
+        font-size:35px;
+
+    }
+
+
+    #typewriter {
+
+        font-size:16px;
+
+    }
+
+
+    .gallery {
+
+        grid-template-columns: repeat(2,1fr);
+
+    }
+
+
+    .photo img {
+
+        height:150px;
+
+    }
+
+
+    .cake {
+
+        transform: scale(.85);
+
+    }
+
+
+    .final-card h1 {
+
+        font-size:35px;
+
+    }
+
+
+    .gift-box {
+
+        font-size:80px;
+
+    }
+
+}
+
+
+/* =========================
+   BODY SCROLL EFFECT
+========================= */
+
+
+section {
+
+    transition: .5s ease;
+
+}
+
+
+/* =========================
+   BUTTON CLICK EFFECT
+========================= */
+
+
+button:active {
+
+    transform: scale(.95);
+
+}
