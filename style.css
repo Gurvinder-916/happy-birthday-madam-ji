@@ -1110,3 +1110,57 @@ button:active {
     margin-bottom:30px;
 
 }
+/* =========================
+   REALISTIC ENVELOPE
+========================= */
+
+.envelope {
+
+    transform-style: preserve-3d;
+
+}
+
+
+.envelope.open {
+
+    transform: translateY(-20px);
+
+}
+
+
+.envelope.open .letter {
+
+    animation: letterRise 1.5s ease forwards;
+
+}
+
+
+@keyframes letterRise {
+
+    0% {
+
+        transform: translateY(0);
+
+    }
+
+    100% {
+
+        transform: translateY(-100px);
+
+    }
+
+}
+
+
+.envelope.open::before {
+
+    transform: rotateX(180deg);
+
+}
+
+
+.letter {
+
+    transition:1s;
+
+}
