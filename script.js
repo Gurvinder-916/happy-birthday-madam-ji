@@ -701,3 +701,64 @@ giftBox.addEventListener("click",()=>{
 console.log(
 "🎂 Birthday Card Project Loaded Successfully ❤️"
 );
+/* =========================
+   ROMANTIC SLIDESHOW
+========================= */
+
+
+const slideImage =
+document.getElementById("slideImage");
+
+
+const photos = [
+
+"images/photo1.jpg",
+
+"images/photo2.jpg",
+
+"images/photo3.jpg",
+
+"images/photo4.jpg",
+
+"images/photo5.jpg",
+
+"images/photo6.jpg"
+
+];
+
+
+let slideIndex = 0;
+
+
+if(slideImage){
+
+setInterval(()=>{
+
+
+    slideIndex++;
+
+    if(slideIndex >= photos.length){
+
+        slideIndex = 0;
+
+    }
+
+
+    slideImage.style.opacity = 0;
+
+
+    setTimeout(()=>{
+
+        slideImage.src = photos[slideIndex];
+
+        slideImage.style.opacity = 1;
+
+
+    },500);
+
+
+
+},4000);
+
+
+}
