@@ -48,7 +48,11 @@ music.volume = 0;
 
 function fadeInMusic(){
 
-    music.play();
+    music.play().catch(()=>{
+
+console.log("Music waiting for user interaction");
+
+});
 
     let volume = 0;
 
