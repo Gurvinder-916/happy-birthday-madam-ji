@@ -993,3 +993,17 @@ petal.remove();
 
 
 setInterval(createPetal,700);
+/* =========================
+   IMAGE ERROR FIX
+========================= */
+
+document.querySelectorAll("img").forEach(img=>{
+
+img.onerror=function(){
+
+    this.src=
+    "https://via.placeholder.com/500x500?text=Photo";
+
+};
+
+});
