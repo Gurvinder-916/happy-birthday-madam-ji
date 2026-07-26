@@ -1549,3 +1549,98 @@ transform:scale(1.2);
 }
 
 }
+/* =========================
+   FINAL MOBILE OPTIMIZATION
+========================= */
+
+@media(max-width:600px){
+
+
+body{
+
+    overflow-x:hidden;
+
+}
+
+
+.birthday-title{
+
+    font-size:42px;
+
+    padding:10px;
+
+}
+
+
+.subtitle{
+
+    font-size:16px;
+
+}
+
+
+.primary-btn{
+
+    padding:12px 22px;
+
+}
+
+
+.envelope{
+
+    width:260px;
+
+    height:170px;
+
+}
+
+
+.letter-card{
+
+    width:92%;
+
+    padding:20px;
+
+}
+
+
+.handwritten-letter{
+
+    font-size:22px;
+
+}
+
+
+.slideshow{
+
+    height:280px;
+
+}
+
+
+.cake{
+
+    transform:scale(.8);
+
+}
+
+
+.final-card{
+
+    width:92%;
+
+    padding:25px;
+
+}
+
+
+#musicBtn{
+
+    width:45px;
+
+    height:45px;
+
+}
+
+
+}
