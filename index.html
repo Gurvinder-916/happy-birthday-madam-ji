@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday ❤️</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= LOADER ================= -->
+
+<div id="loader">
+
+    <div class="loader-heart">❤️</div>
+
+    <h2>Preparing Your Surprise...</h2>
+
+</div>
+
+<!-- ================= MUSIC ================= -->
+
+<audio id="bgMusic" loop>
+
+    <source src="music/birthday.mp3" type="audio/mpeg">
+
+</audio>
+
+<button id="musicBtn">
+
+    <i class="fa-solid fa-music"></i>
+
+</button>
+
+<!-- ================= PARTICLES ================= -->
+
+<div id="particles"></div>
+
+<div id="hearts-container"></div>
+
+<div id="confetti-container"></div>
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<div id="mainContent" class="hidden">
+
+<section class="hero">
+
+<h1 class="birthday-title">
+
+Happy Birthday ❤️
+
+</h1>
+
+<p class="subtitle">
+
+Today is all about YOU ✨
+
+</p>
+
+<button id="startBtn" class="primary-btn">
+
+Open Your Surprise
+
+</button>
+
+</section>
+
+<!-- ================= ENVELOPE ================= -->
+
+<section id="envelopeSection">
+
+<div class="envelope-wrapper">
+
+<div class="envelope" id="envelope">
+
+<div class="letter">
+
+<h2>For You ❤️</h2>
+
+<p>
+
+Tap to open the letter
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= LETTER ================= -->
+
+<section id="letterSection" class="hidden">
+
+<div class="letter-card">
+
+<h2>My Dearest ❤️</h2>
+
+<div id="typewriter"></div>
+
+<button id="nextGallery">
+
+Continue
+
+</button>
+
+</div>
+
+</section>
+
+<!-- ================= GALLERY ================= -->
+
+<section id="gallerySection" class="hidden">
+
+<h2>
+
+Beautiful Memories
+
+</h2>
+
+<div class="gallery">
+
+<div class="photo">
+
+<img src="images/photo1.jpg" alt="">
+
+</div>
+
+<div class="photo">
+
+<img src="images/photo2.jpg" alt="">
+
+</div>
+
+<div class="photo">
+
+<img src="images/photo3.jpg" alt="">
+
+</div>
+
+<div class="photo">
+
+<img src="images/photo4.jpg" alt="">
+
+</div>
+
+<div class="photo">
+
+<img src="images/photo5.jpg" alt="">
+
+</div>
+
+<div class="photo">
+
+<img src="images/photo6.jpg" alt="">
+
+</div>
+
+</div>
+
+<button id="nextCake">
+
+Next Surprise
+
+</button>
+
+</section>
+<!-- ================= CAKE SECTION ================= -->
+
+<section id="cakeSection" class="hidden">
+
+    <h2>Make a Birthday Wish 🎂</h2>
+
+    <div class="cake-container">
+
+        <div class="cake">
+
+            <div class="cake-top"></div>
+
+            <div class="icing"></div>
+
+            <div class="cake-body"></div>
+
+            <div class="candles">
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+                <div class="candle">
+                    <div class="flame"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <button id="blowCandlesBtn" class="primary-btn">
+
+        Blow Out the Candles 🕯️
+
+    </button>
+
+</section>
+
+<!-- ================= COUNTDOWN ================= -->
+
+<section id="countdownSection" class="hidden">
+
+    <h2>Your Special Time ❤️</h2>
+
+    <div class="countdown-box">
+
+        <div class="count-item">
+            <span id="days">00</span>
+            <p>Days</p>
+        </div>
+
+        <div class="count-item">
+            <span id="hours">00</span>
+            <p>Hours</p>
+        </div>
+
+        <div class="count-item">
+            <span id="minutes">00</span>
+            <p>Minutes</p>
+        </div>
+
+        <div class="count-item">
+            <span id="seconds">00</span>
+            <p>Seconds</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= WISHES ================= -->
+
+<section id="wishesSection" class="hidden">
+
+    <h2>Birthday Wishes 💖</h2>
+
+    <div class="wish-card">
+
+        <p id="wishText">
+
+            Every moment with you is a beautiful memory.
+            May this birthday bring endless happiness,
+            laughter, success, love, and every dream your
+            heart wishes for. You deserve the entire world.
+            Happy Birthday ❤️
+
+        </p>
+
+    </div>
+
+    <button id="showFinalBtn" class="primary-btn">
+
+        One Last Surprise 🎁
+
+    </button>
+
+</section>
+<!-- ================= FINAL SURPRISE ================= -->
+
+<section id="finalSection" class="hidden">
+
+    <div class="final-card">
+
+        <h1>
+            A Special Surprise For You ❤️
+        </h1>
+
+        <div class="gift-box" id="giftBox">
+
+            🎁
+
+        </div>
+
+        <p id="finalMessage">
+
+            You are one of the most special people in my life.
+            Thank you for being a beautiful part of my journey.
+            I hope your smile always stays this bright ❤️
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FIREWORKS AREA ================= -->
+
+<div id="fireworks-container"></div>
+
+
+<!-- ================= LOVE MESSAGE ================= -->
+
+<section id="loveSection" class="hidden">
+
+    <div class="love-card">
+
+        <h2>
+            Forever Special ❤️
+        </h2>
+
+        <p>
+
+            No matter where life takes us,
+            I hope you always remember how amazing
+            and loved you are.
+
+            Keep smiling and keep shining ✨
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <p>
+
+        Made with ❤️ for your special day
+
+    </p>
+
+</footer>
+
+
+</div>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
