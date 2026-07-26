@@ -1241,3 +1241,110 @@ button:active {
     margin-bottom:10px;
 
 }
+/* =========================
+   ROMANTIC NIGHT SKY
+========================= */
+
+body::before {
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    radial-gradient(circle at 20% 30%, white 1px, transparent 2px),
+    radial-gradient(circle at 70% 20%, white 1px, transparent 2px),
+    radial-gradient(circle at 40% 80%, white 1px, transparent 2px),
+    radial-gradient(circle at 90% 60%, white 1px, transparent 2px);
+
+    background-size:200px 200px;
+
+    opacity:.5;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+
+body {
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff9a9e,
+    #c471ed,
+    #12c2e9
+    );
+
+}
+/* =========================
+   MEMORY TIMELINE
+========================= */
+
+
+#memorySection {
+
+    padding:50px 20px;
+
+}
+
+
+.memory {
+
+    max-width:500px;
+
+    margin:25px auto;
+
+    background:white;
+
+    color:#ff4d6d;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    animation:fadeUp 1s ease;
+
+}
+
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+#secretMessage{
+
+background:white;
+
+color:#ff4d6d;
+
+padding:25px;
+
+margin:30px auto;
+
+max-width:500px;
+
+border-radius:20px;
+
+font-size:20px;
+
+}
