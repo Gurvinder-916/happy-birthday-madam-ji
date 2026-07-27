@@ -2,47 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Birthday Prativha Ji ❤️</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Google Fonts for Elegant Typography -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Canvas Confetti for Celebration -->
+    <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 
-    <!-- Audio Player (Hidden) -->
+    <!-- Heart Cursor Trail -->
+    <div id="cursor-trail"></div>
+    <div id="background-effects"></div>
+
+    <!-- Background Music -->
     <audio id="bg-music" loop>
         <source src="music/birthday.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Floating Background Elements -->
-    <div id="background-effects"></div>
-
     <!-- Loading Screen -->
     <div id="loader">
-        <div class="heart-loader"><i class="fas fa-heart"></i></div>
-        <p>Preparing Your Surprise...</p>
+        <div class="heart-loader pulse-anim"><i class="fas fa-heart"></i></div>
+        <p class="handwritten" style="font-size: 2.5rem; color: #fff;">Crafting Magic...</p>
         <div class="progress-bar"><div class="progress"></div></div>
+    </div>
+
+    <!-- Lightbox for Photo Zoom -->
+    <div id="lightbox" class="hidden">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Zoomed Photo">
     </div>
 
     <!-- Main Content -->
     <main id="main-content" class="hidden">
-        
-        <!-- Music Toggle -->
-        <button id="music-toggle" class="glass-btn">
-            <i class="fas fa-music"></i>
-        </button>
+        <button id="music-toggle" class="glass-btn"><i class="fas fa-music"></i></button>
 
         <!-- Hero Section -->
-        <section id="hero" class="fullscreen glass-panel">
-            <h1 class="title">Happy Birthday<br><span>Prativha Ji ❤️</span></h1>
-            <p class="subtitle">Made with endless love</p>
-            <p class="welcome-text">A beautiful story awaits you. I've prepared something special just to see you smile today.</p>
-            <button id="open-surprise-btn" class="primary-btn">Open Your Surprise 💌</button>
+        <section id="hero" class="fullscreen text-center">
+            <div class="glass-panel" style="background: transparent; border: none; box-shadow: none;">
+                <h2 id="smart-greeting" class="subtitle" style="color: var(--gold);">Good Morning,</h2>
+                <h1 class="title neon-glow">Happy Birthday<br><span>Prativha Ji ❤️</span></h1>
+                <p class="welcome-text">An interactive journey of our love story.</p>
+                <button id="open-surprise-btn" class="primary-btn pulse-anim mt-2">Begin The Magic ✨</button>
+            </div>
         </section>
 
         <!-- Envelope & Letter Section -->
@@ -53,109 +58,145 @@
                     <div class="pocket"></div>
                     <div class="letter">
                         <div class="letter-content">
-                            <h2 class="handwritten">My Dearest Prativha Ji,</h2>
+                            <h2 class="handwritten" style="color: #c94b63;">My Dearest,</h2>
                             <p id="typewriter-text"></p>
                         </div>
                     </div>
                 </div>
             </div>
-            <button id="continue-btn" class="primary-btn hidden" style="margin-top: 40px; z-index: 10;">Explore Our Memories 📸</button>
+            <button id="continue-btn" class="primary-btn hidden mt-2">Scroll To Explore ⬇️</button>
         </section>
 
-        <!-- Journey Sections (Revealed after letter) -->
         <div id="journey-content" class="hidden">
-            
-            <!-- Photo Slideshow -->
-            <section id="slideshow-section" class="glass-panel">
-                <h2>Our Beautiful Moments</h2>
-                <div class="slideshow-container">
-                    <img id="slide-img" src="images/photo1.jpg" alt="Memory with Prativha Ji">
-                    <button class="nav-btn prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <button class="nav-btn next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
-                </div>
-                <p id="slide-caption" class="caption">Every moment with you is a treasure.</p>
-            </section>
 
-            <!-- Memory Timeline -->
-            <section id="timeline-section">
-                <h2>Our Journey</h2>
-                <div class="timeline">
-                    <div class="timeline-card glass-panel">
-                        <h3>✨ The Beginning</h3>
-                        <p>The moment our paths crossed, everything changed for the better.</p>
-                    </div>
-                    <div class="timeline-card glass-panel">
-                        <h3>💖 Beautiful Memories</h3>
-                        <p>Countless laughs, shared secrets, and moments I will cherish forever.</p>
-                    </div>
-                    <div class="timeline-card glass-panel">
-                        <h3>🌹 Today</h3>
-                        <p>Celebrating the most amazing person in the world.</p>
-                    </div>
-                    <div class="timeline-card glass-panel">
-                        <h3>❤️ Forever</h3>
-                        <p>A promise to always keep that beautiful smile on your face.</p>
-                    </div>
+            <!-- Relationship Stats -->
+            <section class="glass-panel reveal text-center mt-2">
+                <h2>Our Timeline</h2>
+                <div class="stats-grid">
+                    <div><h3 id="day-counter" class="neon-glow">0</h3><p>Days Together</p></div>
+                    <div><h3 class="neon-glow">∞</h3><p>Memories Made</p></div>
+                    <div><h3 class="neon-glow">1</h3><p>Beautiful Soul</p></div>
                 </div>
             </section>
 
-            <!-- Love Meter -->
-            <section id="love-meter-section" class="glass-panel">
-                <h2>Our Bond</h2>
-                <div class="meter-container">
-                    <div class="meter-bar" id="love-bar"></div>
+            <!-- Scrapbook & Polaroids -->
+            <section class="reveal text-center mt-2">
+                <h2 class="handwritten" style="font-size: 3.5rem;">Reasons I Love You</h2>
+                <div class="polaroid-gallery">
+                    <div class="polaroid-card">
+                        <div class="polaroid-inner">
+                            <div class="polaroid-front">
+                                <img src="images/photo1.jpg" alt="Memory" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300'">
+                                <p>Tap Me</p>
+                            </div>
+                            <div class="polaroid-back"><p>Your pure and caring heart.</p></div>
+                        </div>
+                    </div>
+                    <div class="polaroid-card">
+                        <div class="polaroid-inner">
+                            <div class="polaroid-front">
+                                <img src="images/photo2.jpg" alt="Memory" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300'">
+                                <p>Tap Me</p>
+                            </div>
+                            <div class="polaroid-back"><p>Your gorgeous smile.</p></div>
+                        </div>
+                    </div>
+                    <div class="polaroid-card">
+                        <div class="polaroid-inner">
+                            <div class="polaroid-front">
+                                <img src="images/photo3.jpg" alt="Memory" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=300'">
+                                <p>Tap Me</p>
+                            </div>
+                            <div class="polaroid-back"><p>How safe you make me feel.</p></div>
+                        </div>
+                    </div>
                 </div>
-                <p class="meter-text">100% Pure Love & Respect ❤️</p>
             </section>
 
-            <!-- Birthday Cake Section -->
-            <section id="cake-section" class="glass-panel">
-                <h2>Make a Wish, Prativha Ji 🎂</h2>
+            <!-- Masonry Gallery -->
+            <section class="glass-panel reveal mt-2">
+                <h2>Memory Lane</h2>
+                <p class="text-center" style="font-size:0.9rem; margin-bottom:15px; opacity: 0.8;">(Click any photo to zoom)</p>
+                <div class="masonry-grid">
+                    <img src="images/photo4.jpg" class="zoomable" onerror="this.style.display='none'">
+                    <img src="images/photo5.jpg" class="zoomable" onerror="this.style.display='none'">
+                    <img src="images/photo6.jpg" class="zoomable" onerror="this.style.display='none'">
+                    <img src="images/photo7.jpg" class="zoomable" onerror="this.style.display='none'">
+                    <img src="images/photo8.jpg" class="zoomable" onerror="this.style.display='none'">
+                </div>
+            </section>
+
+            <!-- Interactive Game: Lucky Wheel -->
+            <section class="glass-panel reveal text-center mt-2">
+                <h2>Wheel of Surprises 🎡</h2>
+                <p>Spin the wheel for your digital birthday gift!</p>
+                <div class="wheel-container mt-2">
+                    <div id="wheel" class="wheel">
+                        <div class="wheel-segment" style="--i:1; background:#ff758c;">Kiss 😘</div>
+                        <div class="wheel-segment" style="--i:2; background:#ff7eb3;">Hug 🤗</div>
+                        <div class="wheel-segment" style="--i:3; background:#ffd700; color:#333;">Dinner 🍝</div>
+                        <div class="wheel-segment" style="--i:4; background:#c94b63;">Movie 🎬</div>
+                    </div>
+                    <div class="wheel-pointer">▼</div>
+                </div>
+                <button id="spin-btn" class="primary-btn mt-2">Spin Now!</button>
+                <p id="wheel-result" class="hidden handwritten mt-2 neon-glow" style="font-size: 2.5rem;"></p>
+            </section>
+
+            <!-- Interactive Game: Runaway Button -->
+            <section id="interactive-question" class="glass-panel reveal text-center mt-2">
+                <h2 class="handwritten" style="font-size: 3.5rem;">A Quick Question...</h2>
+                <p style="font-size: 1.2rem;">Will you always hold my hand and stay with me?</p>
+                <div class="question-buttons mt-2">
+                    <button id="btn-yes" class="primary-btn pulse-anim">Yes, Forever ❤️</button>
+                    <button id="btn-no" class="primary-btn" style="background: #555; position: absolute;">No 😢</button>
+                </div>
+                <p id="promise-text" class="hidden handwritten mt-2 neon-glow" style="font-size: 2.2rem;">I promise to cherish you for a lifetime! 💞</p>
+            </section>
+
+            <!-- Virtual Love Coupons -->
+            <section class="reveal mt-2 text-center">
+                <h2>Love Coupons 🎟️</h2>
+                <p>Redeemable anytime, anywhere with me.</p>
+                <div class="coupons-container mt-2">
+                    <div class="coupon" onclick="this.classList.add('used')">
+                        <h3>1 Free Massage</h3>
+                        <p>Valid forever. Tap to use.</p>
+                    </div>
+                    <div class="coupon" onclick="this.classList.add('used')">
+                        <h3>Date Night Choice</h3>
+                        <p>Valid forever. Tap to use.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Birthday Cake -->
+            <section id="cake-section" class="glass-panel reveal mt-2">
+                <h2>Make a Wish 🎂</h2>
                 <div class="cake">
                     <div class="layer layer-top"></div>
                     <div class="layer layer-middle"></div>
                     <div class="layer layer-bottom"></div>
-                    <div class="candle">
-                        <div class="flame" id="flame"></div>
-                    </div>
+                    <div class="candle"><div class="flame" id="flame"></div></div>
                 </div>
-                <button id="blow-candle-btn" class="primary-btn mt-2">Blow out the candle 🌬️</button>
-                <p id="wish-text" class="hidden handwritten mt-2">May all your beautiful dreams come true! 🎉</p>
+                <button id="blow-candle-btn" class="primary-btn mt-2 pulse-anim">Blow out the candle 🌬️</button>
+                <p id="wish-text" class="hidden handwritten mt-2" style="font-size: 2rem;">May all your dreams come true! 🎉</p>
             </section>
 
-            <!-- Secret Gift -->
-            <section id="gift-section">
-                <h2>A Secret Surprise 🎁</h2>
-                <div id="gift-box" class="gift-box">
-                    <i class="fas fa-gift fa-5x"></i>
-                </div>
-                <div id="gift-message" class="glass-panel hidden">
-                    <h3 class="handwritten">You are my greatest gift ❤️</h3>
-                    <p>No present could ever match the joy you bring into this world. Keep shining!</p>
-                </div>
+            <!-- Grand Finale -->
+            <section id="final-letter" class="glass-panel text-center reveal mt-2">
+                <h2 class="handwritten" style="font-size: 3.5rem;">Happy Birthday!</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 20px;">You deserve all the love in the universe. Keep shining, keep smiling, and never forget how truly special you are.</p>
+                <button id="finale-btn" class="primary-btn pulse-anim" style="background: linear-gradient(45deg, #ffd700, #ff758c); color:#333; font-size: 1.3rem;">Start Grand Finale 🎆</button>
             </section>
 
-            <!-- Final Letter -->
-            <section id="final-letter" class="glass-panel text-center">
-                <h2 class="handwritten">To Conclude...</h2>
-                <p>Prativha Ji, you are truly special. You deserve all the happiness, love, and success the universe has to offer. Never forget how amazing you are, and please, always keep smiling—your smile brightens up everything around you.</p>
-                <h3 class="handwritten mt-2">Happy Birthday once again! ❤️</h3>
-                
-                <a href="https://wa.me/?text=Happy%20Birthday%20Prativha%20Ji%20%E2%9D%A4%EF%B8%8F%20Check%20out%20this%20special%20birthday%20surprise!" target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Share the Joy
-                </a>
-            </section>
-
-            <!-- Footer -->
             <footer>
-                <p>Made with endless love ❤️</p>
-                <p>Happy Birthday once again, Prativha Ji.</p>
+                <p class="handwritten" style="font-size: 2rem; color: var(--pink);">Made with endless love ❤️</p>
+                <p style="opacity: 0.8;">Happy Birthday, Prativha Ji</p>
             </footer>
-
         </div>
     </main>
 
     <script src="script.js"></script>
 </body>
 </html>
-
