@@ -1,201 +1,234 @@
-// --- DOM Elements ---
+// --- Core Elements ---
 const loader = document.getElementById('loader');
 const mainContent = document.getElementById('main-content');
-const hero = document.getElementById('hero');
-const envelopeSection = document.getElementById('envelope-section');
-const envelope = document.getElementById('envelope');
-const typewriterText = document.getElementById('typewriter-text');
-const continueBtn = document.getElementById('continue-btn');
-const journeyContent = document.getElementById('journey-content');
 const bgMusic = document.getElementById('bg-music');
 const musicToggle = document.getElementById('music-toggle');
-const loveBar = document.getElementById('love-bar');
-const giftBox = document.getElementById('gift-box');
-const giftMessage = document.getElementById('gift-message');
-const blowCandleBtn = document.getElementById('blow-candle-btn');
-const flame = document.getElementById('flame');
-const wishText = document.getElementById('wish-text');
 
-// --- Initialization ---
+// --- Initialization & Smart Features ---
 window.onload = () => {
-    // Remove loader after 3 seconds
+    // Smart Greeting based on Time
+    const hour = new Date().getHours();
+    const greetingEl = document.getElementById('smart-greeting');
+    if (hour < 12) greetingEl.innerText = "Good Morning,";
+    else if (hour < 18) greetingEl.innerText = "Good Afternoon,";
+    else greetingEl.innerText = "Good Evening,";
+
+    // Dynamic Relationship Day Counter (Edit your date here: YYYY-MM-DD)
+    const startDate = new Date('2022-01-01');
+    const diffDays = Math.ceil(Math.abs(new Date() - startDate) / (1000 * 60 * 60 * 24));
+    document.getElementById('day-counter').innerText = diffDays;
+
+    // Remove Loader smoothly
     setTimeout(() => {
         loader.style.opacity = '0';
         setTimeout(() => {
-            loader.style.display = 'none';
+            loader.classList.add('hidden');
             mainContent.classList.remove('hidden');
             createParticles();
         }, 1000);
-    }, 3000);
+    }, 3500);
 };
 
-// --- Music Control ---
+// --- Cursor Heart Trail (Memory Leak Prevented) ---
+const createTrailHeart = (x, y) => {
+    if(Math.random() > 0.8) { 
+        const heart = document.createElement('i');
+        heart.className = 'fas fa-heart trail-heart';
+        heart.style.left = x + 'px'; 
+        heart.style.top = y + 'px';
+        document.body.appendChild(heart);
+        // Destroy element after animation finishes to prevent lag
+        setTimeout(() => heart.remove(), 1000);
+    }
+};
+
+document.addEventListener('mousemove', (e) => createTrailHeart(e.clientX, e.clientY));
+document.addEventListener('touchmove', (e) => createTrailHeart(e.touches[0].clientX, e.touches[0].clientY));
+
+// --- Scroll Reveal Animations ---
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { 
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active'); 
+        }
+    });
+}, { threshold: 0.1 });
+
+// --- Music & Flow Control ---
 let isPlaying = false;
 musicToggle.addEventListener('click', () => {
-    if (isPlaying) {
-        bgMusic.pause();
-        musicToggle.innerHTML = '<i class="fas fa-music"></i>';
-    } else {
-        bgMusic.play();
-        musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
+    if (isPlaying) { 
+        bgMusic.pause(); 
+        musicToggle.innerHTML = '<i class="fas fa-music"></i>'; 
+    } else { 
+        bgMusic.play(); 
+        musicToggle.innerHTML = '<i class="fas fa-pause"></i>'; 
     }
     isPlaying = !isPlaying;
 });
 
-// --- Open Surprise (Hero to Envelope) ---
 document.getElementById('open-surprise-btn').addEventListener('click', () => {
-    // Auto-play music on first interaction
-    bgMusic.play().catch(e => console.log("Audio play blocked by browser"));
-    isPlaying = true;
+    bgMusic.play().catch(e => console.log("Audio autoplay blocked by browser, user needs to interact again."));
+    isPlaying = true; 
     musicToggle.innerHTML = '<i class="fas fa-pause"></i>';
-
-    hero.classList.add('hidden');
-    envelopeSection.classList.remove('hidden');
+    document.getElementById('hero').classList.add('hidden');
+    document.getElementById('envelope-section').classList.remove('hidden');
 });
 
-// --- Envelope & Typewriter ---
-const letterContent = `Happy Birthday to someone incredibly special! I wanted to create something unique just for you. Thank you for your endless support, your care, and the beautiful light you bring into this world. I promise to always try and make you smile, today and always. May God bless you with everything your heart desires. ❤️`;
+// --- Envelope Typewriter ---
+const envelope = document.getElementById('envelope');
+const typewriterText = document.getElementById('typewriter-text');
+const continueBtn = document.getElementById('continue-btn');
+const letterContent = `My love, thank you for being the most beautiful part of my life. I wanted to build something special just for you. Every line of code here is filled with love and respect. 💖`;
 
 envelope.addEventListener('click', () => {
     if (!envelope.classList.contains('open')) {
         envelope.classList.add('open');
-        setTimeout(typeWriter, 1500); // Wait for envelope to open before typing
-    }
-});
-
-let i = 0;
-function typeWriter() {
-    if (i < letterContent.length) {
-        typewriterText.innerHTML += letterContent.charAt(i);
-        i++;
-        setTimeout(typeWriter, 40); // Typing speed
-    } else {
-        // Show continue button when typing is done
+        
+        // Wait for CSS envelope animation to finish before typing
         setTimeout(() => {
-            continueBtn.classList.remove('hidden');
-        }, 1000);
+            let i = 0;
+            function typeWriter() {
+                if (i < letterContent.length) {
+                    typewriterText.innerHTML += letterContent.charAt(i); 
+                    i++;
+                    setTimeout(typeWriter, 40);
+                } else { 
+                    setTimeout(() => continueBtn.classList.remove('hidden'), 1000); 
+                }
+            }
+            typeWriter();
+        }, 1500);
     }
-}
+});
 
-// --- Continue to Journey ---
 continueBtn.addEventListener('click', () => {
-    envelopeSection.classList.add('hidden');
-    journeyContent.classList.remove('hidden');
-    
-    // Animate Love Meter when scrolled into view
-    setTimeout(() => {
-        loveBar.style.width = '100%';
-    }, 500);
-    
-    // Scroll to top of journey
+    document.getElementById('envelope-section').classList.add('hidden');
+    document.getElementById('journey-content').classList.remove('hidden');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Start observing sections for the scroll animation
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 });
 
-// --- Slideshow Logic ---
-let slideIndex = 1;
-const totalSlides = 10;
-const slideImg = document.getElementById('slide-img');
-const captions = [
-    "Every moment with you is a treasure.",
-    "Your smile lights up my world.",
-    "Cherishing every laugh we share.",
-    "Beautiful memories created together.",
-    "You are my favorite thought.",
-    "A bond that grows stronger every day.",
-    "Through all times, you shine.",
-    "Unforgettable moments.",
-    "Grateful for your presence.",
-    "Here's to a lifetime of happiness."
-];
-const slideCaption = document.getElementById('slide-caption');
+// --- Lightbox Gallery Zoom ---
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
 
-function changeSlide(n) {
-    slideIndex += n;
-    if (slideIndex > totalSlides) slideIndex = 1;
-    if (slideIndex < 1) slideIndex = totalSlides;
-    
-    // Assuming images are named photo1.jpg to photo10.jpg
-    slideImg.src = `images/photo${slideIndex}.jpg`;
-    slideCaption.innerText = captions[slideIndex - 1];
-    
-    // Fallback if image doesn't exist (prevents broken image icon)
-    slideImg.onerror = function() {
-        this.src = 'https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80'; // Romantic placeholder
-    };
-}
-
-// Auto slideshow
-setInterval(() => {
-    if (!journeyContent.classList.contains('hidden')) {
-        changeSlide(1);
-    }
-}, 4000);
-
-// --- Blow Candle & Celebration ---
-blowCandleBtn.addEventListener('click', () => {
-    flame.style.display = 'none'; // Extinguish flame
-    blowCandleBtn.classList.add('hidden');
-    wishText.classList.remove('hidden');
-    
-    // Fire Confetti
-    var duration = 3 * 1000;
-    var animationEnd = Date.now() + duration;
-    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-    function randomInRange(min, max) {
-      return Math.random() * (max - min) + min;
-    }
-
-    var interval = setInterval(function() {
-      var timeLeft = animationEnd - Date.now();
-
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
-      }
-
-      var particleCount = 50 * (timeLeft / duration);
-      confetti(Object.assign({}, defaults, { particleCount,
-        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
-      }));
-      confetti(Object.assign({}, defaults, { particleCount,
-        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
-      }));
-    }, 250);
-});
-
-// --- Secret Gift Box ---
-giftBox.addEventListener('click', () => {
-    giftBox.classList.add('hidden');
-    giftMessage.classList.remove('hidden');
-    
-    // Small heart burst on gift open
-    confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#ff758c', '#ff7eb3', '#ffd700']
+document.querySelectorAll('.zoomable').forEach(img => {
+    img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.remove('hidden');
     });
 });
 
-// --- Background Particles (Hearts & Petals) ---
-function createParticles() {
-    const background = document.getElementById('background-effects');
-    const particleColors = ['#ff7eb3', '#ff758c', '#fff'];
-    const emojis = ['❤️', '✨', '🌹'];
+document.querySelector('.close-lightbox').addEventListener('click', () => lightbox.classList.add('hidden'));
+lightbox.addEventListener('click', (e) => { 
+    if (e.target !== lightboxImg) lightbox.classList.add('hidden'); 
+});
+
+// --- Lucky Wheel Mini-Game ---
+const wheel = document.getElementById('wheel');
+const spinBtn = document.getElementById('spin-btn');
+const wheelResult = document.getElementById('wheel-result');
+let currentRotation = 0;
+const prizes = ["Movie 🎬", "Dinner 🍝", "Hug 🤗", "Kiss 😘"]; // Mapped to CSS segments
+
+spinBtn.addEventListener('click', () => {
+    spinBtn.disabled = true;
+    const spins = Math.floor(Math.random() * 5) + 5; // 5 to 10 full spins
+    const extraDegree = Math.floor(Math.random() * 360);
+    currentRotation += (spins * 360) + extraDegree;
     
-    for (let i = 0; i < 30; i++) {
-        let particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+    wheel.style.transform = `rotate(${currentRotation}deg)`;
+    
+    setTimeout(() => {
+        // Calculate which segment is at the top
+        const normalizedDegree = (currentRotation % 360);
+        // Adjusting index so it corresponds visually to the top pointer
+        let index = Math.floor(((360 - normalizedDegree) % 360) / 90);
         
-        // Randomize styles
-        particle.style.left = Math.random() * 100 + 'vw';
-        particle.style.fontSize = Math.random() * 15 + 10 + 'px';
-        particle.style.animationDuration = Math.random() * 5 + 5 + 's';
-        particle.style.animationDelay = Math.random() * 5 + 's';
-        particle.style.opacity = Math.random() * 0.5 + 0.2;
-        
-        background.appendChild(particle);
-    }
+        wheelResult.innerText = `You won: ${prizes[index]}! 🎉`;
+        wheelResult.classList.remove('hidden');
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        spinBtn.disabled = false;
+    }, 4000); // Waits for CSS transition (4s)
+});
+
+// --- Runaway "No" Button Mini-Game ---
+const btnNo = document.getElementById('btn-no');
+const btnYes = document.getElementById('btn-yes');
+const interactiveSection = document.getElementById('interactive-question');
+
+function moveNoButton() {
+    const btnRect = btnNo.getBoundingClientRect();
+    const sectionRect = interactiveSection.getBoundingClientRect();
+    
+    // Boundaries to keep the button inside the glass panel
+    const maxX = sectionRect.width - btnRect.width - 20; 
+    const maxY = sectionRect.height - btnRect.height - 20;
+    
+    // Random translation coordinates
+    const randomX = Math.floor(Math.random() * maxX) - (maxX / 2);
+    const randomY = Math.floor(Math.random() * maxY) - (maxY / 2) + 20; 
+    
+    btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
 }
 
+// Support for both mouse (desktop) and touch (mobile)
+btnNo.addEventListener('mouseover', moveNoButton);
+btnNo.addEventListener('touchstart', (e) => { 
+    e.preventDefault(); 
+    moveNoButton(); 
+});
+
+btnYes.addEventListener('click', () => {
+    document.getElementById('promise-text').classList.remove('hidden');
+    btnNo.style.display = 'none'; // Hide the "No" button entirely
+    confetti({ particleCount: 150, spread: 100, colors: ['#ff758c', '#ff7eb3', '#ffd700'] });
+});
+
+// --- Birthday Cake Blow ---
+document.getElementById('blow-candle-btn').addEventListener('click', function() {
+    document.getElementById('flame').style.display = 'none';
+    this.classList.add('hidden');
+    document.getElementById('wish-text').classList.remove('hidden');
+    confetti({ particleCount: 100, spread: 60 });
+});
+
+// --- Grand Finale Fireworks ---
+document.getElementById('finale-btn').addEventListener('click', () => {
+    var duration = 15 * 1000; // 15 seconds of fireworks
+    var animationEnd = Date.now() + duration;
+    var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+    function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+    var interval = setInterval(function() {
+      var timeLeft = animationEnd - Date.now();
+      
+      if (timeLeft <= 0) return clearInterval(interval);
+      
+      var particleCount = 50 * (timeLeft / duration);
+      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+      confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+    }, 250);
+});
+
+// --- Background Particles (Stars & Petals) ---
+function createParticles() {
+    const bg = document.getElementById('background-effects');
+    const emojis = ['✨', '🌸', '💫'];
+    
+    for (let i = 0; i < 35; i++) {
+        let p = document.createElement('div');
+        p.className = 'particle';
+        p.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.fontSize = Math.random() * 10 + 10 + 'px';
+        p.style.animationDuration = Math.random() * 5 + 6 + 's'; // 6 to 11 seconds
+        p.style.animationDelay = Math.random() * 5 + 's';
+        p.style.opacity = Math.random() * 0.4 + 0.2;
+        bg.appendChild(p);
+    }
+}
