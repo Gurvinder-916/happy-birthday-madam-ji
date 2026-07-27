@@ -3,435 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday ❤️</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- CSS -->
+    <title>Happy Birthday Prativha Ji ❤️</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for Elegant Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti for Celebration -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
-
 <body>
-<div id="intro">
 
-    <h1>
-        For Prativha ji ❤️
-    </h1>
-
-    <p>
-        A special surprise is waiting...
-    </p>
-
-</div>
-<!-- ================= LOADER ================= -->
-
-<div id="loader">
-
-    <div class="loader-heart">❤️</div>
-
-    <h2>Preparing Your Surprise...</h2>
-
-</div>
-
-<!-- ================= MUSIC ================= -->
-
-<audio id="bgMusic" loop>
-
-    <source src="music/birthday.mp3" type="audio/mpeg">
-
-</audio>
-
-<button id="musicBtn">
-
-    <i class="fa-solid fa-music"></i>
-
-</button>
-
-<!-- ================= PARTICLES ================= -->
-
-<div id="particles"></div>
-
-<div id="hearts-container"></div>
-
-<div id="confetti-container"></div>
-
-<!-- ================= MAIN CONTENT ================= -->
-
-<div id="mainContent" class="hidden">
-
-<section class="hero">
-
-<div class="name-heart-area">
-
-<h1 class="birthday-title">
-Happy Birthday Prativha ji ❤️
-</h1>
-
-<div id="nameHearts"></div>
-
-</div>
-
-<p class="subtitle">
-
-Today is all about YOU 🐭✨
-
-</p>
-
-<button id="startBtn" class="primary-btn">
-
-Open Your Surprise
-
-</button>
-
-</section>
-
-<!-- ================= ENVELOPE ================= -->
-
-<section id="envelopeSection">
-
-<div class="envelope-wrapper">
-
-<div class="envelope" id="envelope">
-
-<div class="letter">
-
-<h2>For You ❤️</h2>
-
-<p>
-
-Tap to open the letter
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= LETTER ================= -->
-
-<section id="letterSection" class="hidden">
-
-<div class="letter-card">
-
-<h2>My Dearest Madam ji ❤️</h2>
-
-<div class="handwritten-letter">
-
-<div id="typewriter"></div>
-
-</div>
-
-<button id="nextGallery">
-
-Continue
-
-</button>
-
-</div>
-
-</section>
-
-<!-- ================= GALLERY ================= -->
-
-<section id="gallerySection" class="hidden">
-
-<h2>
-
-Beautiful Memories
-
-</h2>
-
-<div class="slideshow">
-
-    <img id="slideImage" src="images/1.jpg" alt="Prativha ji">
-
-</div>
-
-<p class="slide-text">
-Beautiful memories with you ❤️
-</p>
-
-</div>
-
-<button id="nextCake">
-
-Next Surprise
-
-</button>
-
-</section>
-<!-- ================= CAKE SECTION ================= -->
-
-<section id="cakeSection" class="hidden">
-
-    <h2>Make a Birthday Wish 🎂</h2>
-
-    <div class="cake-container">
-
-        <div class="cake">
-
-            <div class="cake-top"></div>
-
-            <div class="icing"></div>
-
-            <div class="cake-body"></div>
-
-            <div class="candles">
-
-                <div class="candle">
-                    <div class="flame"></div>
+    <!-- Audio Player (Hidden) -->
+    <audio id="bg-music" loop>
+        <source src="music/birthday.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Background Elements -->
+    <div id="background-effects"></div>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="heart-loader"><i class="fas fa-heart"></i></div>
+        <p>Preparing Your Surprise...</p>
+        <div class="progress-bar"><div class="progress"></div></div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="hidden">
+        
+        <!-- Music Toggle -->
+        <button id="music-toggle" class="glass-btn">
+            <i class="fas fa-music"></i>
+        </button>
+
+        <!-- Hero Section -->
+        <section id="hero" class="fullscreen glass-panel">
+            <h1 class="title">Happy Birthday<br><span>Prativha Ji ❤️</span></h1>
+            <p class="subtitle">Made with endless love</p>
+            <p class="welcome-text">A beautiful story awaits you. I've prepared something special just to see you smile today.</p>
+            <button id="open-surprise-btn" class="primary-btn">Open Your Surprise 💌</button>
+        </section>
+
+        <!-- Envelope & Letter Section -->
+        <section id="envelope-section" class="fullscreen hidden">
+            <div class="envelope-wrapper">
+                <div class="envelope" id="envelope">
+                    <div class="flap"></div>
+                    <div class="pocket"></div>
+                    <div class="letter">
+                        <div class="letter-content">
+                            <h2 class="handwritten">My Dearest Prativha Ji,</h2>
+                            <p id="typewriter-text"></p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="candle">
-                    <div class="flame"></div>
-                </div>
-
-                <div class="candle">
-                    <div class="flame"></div>
-                </div>
-
             </div>
+            <button id="continue-btn" class="primary-btn hidden" style="margin-top: 40px; z-index: 10;">Explore Our Memories 📸</button>
+        </section>
+
+        <!-- Journey Sections (Revealed after letter) -->
+        <div id="journey-content" class="hidden">
+            
+            <!-- Photo Slideshow -->
+            <section id="slideshow-section" class="glass-panel">
+                <h2>Our Beautiful Moments</h2>
+                <div class="slideshow-container">
+                    <img id="slide-img" src="images/photo1.jpg" alt="Memory with Prativha Ji">
+                    <button class="nav-btn prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="nav-btn next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <p id="slide-caption" class="caption">Every moment with you is a treasure.</p>
+            </section>
+
+            <!-- Memory Timeline -->
+            <section id="timeline-section">
+                <h2>Our Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-card glass-panel">
+                        <h3>✨ The Beginning</h3>
+                        <p>The moment our paths crossed, everything changed for the better.</p>
+                    </div>
+                    <div class="timeline-card glass-panel">
+                        <h3>💖 Beautiful Memories</h3>
+                        <p>Countless laughs, shared secrets, and moments I will cherish forever.</p>
+                    </div>
+                    <div class="timeline-card glass-panel">
+                        <h3>🌹 Today</h3>
+                        <p>Celebrating the most amazing person in the world.</p>
+                    </div>
+                    <div class="timeline-card glass-panel">
+                        <h3>❤️ Forever</h3>
+                        <p>A promise to always keep that beautiful smile on your face.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Love Meter -->
+            <section id="love-meter-section" class="glass-panel">
+                <h2>Our Bond</h2>
+                <div class="meter-container">
+                    <div class="meter-bar" id="love-bar"></div>
+                </div>
+                <p class="meter-text">100% Pure Love & Respect ❤️</p>
+            </section>
+
+            <!-- Birthday Cake Section -->
+            <section id="cake-section" class="glass-panel">
+                <h2>Make a Wish, Prativha Ji 🎂</h2>
+                <div class="cake">
+                    <div class="layer layer-top"></div>
+                    <div class="layer layer-middle"></div>
+                    <div class="layer layer-bottom"></div>
+                    <div class="candle">
+                        <div class="flame" id="flame"></div>
+                    </div>
+                </div>
+                <button id="blow-candle-btn" class="primary-btn mt-2">Blow out the candle 🌬️</button>
+                <p id="wish-text" class="hidden handwritten mt-2">May all your beautiful dreams come true! 🎉</p>
+            </section>
+
+            <!-- Secret Gift -->
+            <section id="gift-section">
+                <h2>A Secret Surprise 🎁</h2>
+                <div id="gift-box" class="gift-box">
+                    <i class="fas fa-gift fa-5x"></i>
+                </div>
+                <div id="gift-message" class="glass-panel hidden">
+                    <h3 class="handwritten">You are my greatest gift ❤️</h3>
+                    <p>No present could ever match the joy you bring into this world. Keep shining!</p>
+                </div>
+            </section>
+
+            <!-- Final Letter -->
+            <section id="final-letter" class="glass-panel text-center">
+                <h2 class="handwritten">To Conclude...</h2>
+                <p>Prativha Ji, you are truly special. You deserve all the happiness, love, and success the universe has to offer. Never forget how amazing you are, and please, always keep smiling—your smile brightens up everything around you.</p>
+                <h3 class="handwritten mt-2">Happy Birthday once again! ❤️</h3>
+                
+                <a href="https://wa.me/?text=Happy%20Birthday%20Prativha%20Ji%20%E2%9D%A4%EF%B8%8F%20Check%20out%20this%20special%20birthday%20surprise!" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Share the Joy
+                </a>
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                <p>Made with endless love ❤️</p>
+                <p>Happy Birthday once again, Prativha Ji.</p>
+            </footer>
 
         </div>
+    </main>
 
-    </div>
-
-    <button id="blowCandlesBtn" class="primary-btn">
-
-        Blow Out the Candles 🕯️
-
-    </button>
-
-</section>
-
-<!-- ================= COUNTDOWN ================= -->
-
-<section id="countdownSection" class="hidden">
-
-    <h2>Your Special Time ❤️</h2>
-
-    <div class="countdown-box">
-
-        <div class="count-item">
-            <span id="days">00</span>
-            <p>Days</p>
-        </div>
-
-        <div class="count-item">
-            <span id="hours">00</span>
-            <p>Hours</p>
-        </div>
-
-        <div class="count-item">
-            <span id="minutes">00</span>
-            <p>Minutes</p>
-        </div>
-
-        <div class="count-item">
-            <span id="seconds">00</span>
-            <p>Seconds</p>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= WISHES ================= -->
-
-<section id="wishesSection" class="hidden">
-
-    <h2>Birthday Wishes 💖</h2>
-
-    <div class="wish-card">
-
-        <p id="wishText">
-
-            Every moment with you is a beautiful memory.
-            May this birthday bring endless happiness,
-            laughter, success, love, and every dream your
-            heart wishes for. You deserve the entire world.
-            Happy Birthday Madam ji❤️
-
-        </p>
-
-    </div>
-
-    <button id="showFinalBtn" class="primary-btn">
-
-        One Last Surprise 🎁
-
-    </button>
-
-</section>
-<!-- ================= FINAL SURPRISE ================= -->
-
-<section id="finalSection" class="hidden">
-
-    <div class="final-card">
-
-        <h1>
-            A Special Surprise For You ❤️
-        </h1>
-
-        <div class="gift-box" id="giftBox">
-
-            🎁
-
-        </div>
-
-        <p id="finalMessage">
-
-Prativha ji ❤️
-
-No matter how busy life gets, I hope you always remember that you are someone very special.
-
-Your smile is precious, your happiness matters, and I will always wish the best for you.
-
-Happy Birthday ❤️
-
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- ================= FIREWORKS AREA ================= -->
-
-<div id="fireworks-container"></div>
-
-
-<!-- ================= LOVE MESSAGE ================= -->
-
-<section id="loveSection" class="hidden">
-
-    <div class="love-card">
-
-        <h2>
-            Forever Special ❤️
-        </h2>
-
-        <p>
-
-            No matter where life takes us,
-            I hope you always remember how amazing
-            and loved you are.
-
-            Keep smiling and keep shining ✨
-
-        </p>
-
-    </div>
-
-</section>
-
-<section id="memorySection">
-
-<h2>Our Beautiful Memories ❤️</h2>
-
-
-<div class="memory">
-
-<h3>✨ The Beginning</h3>
-
-<p>
-Every beautiful story starts with a special moment.
-</p>
-
-</div>
-
-
-<div class="memory">
-
-<h3>💖 Precious Moments</h3>
-
-<p>
-Every smile and every memory became special.
-</p>
-
-</div>
-
-
-<div class="memory">
-
-<h3>🌹 Forever</h3>
-
-<p>
-More memories, more smiles and more happiness ahead.
-</p>
-
-</div>
-
-
-</section>
-    <button id="secretBtn" class="primary-btn">
-
-💌 Secret Message
-
-</button>
-
-
-<div id="secretMessage" class="hidden">
-
-Prativha ji ❤️
-
-You are a beautiful blessing.
-Always keep smiling and stay happy ✨
-
-</div>
-    <button id="shareBtn" class="primary-btn">
-
-Share This Card ❤️
-
-    </button>
-    <div class="love-meter">
-
-<h2>
-Our Love Level ❤️
-</h2>
-
-<div class="meter">
-
-<div id="loveFill"></div>
-
-</div>
-
-<p>
-100% Special ❤️
-</p>
-
-    </div>
-    
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-    <p>
-
-        Made with ❤️ for your special day
-
-    </p>
-
-</footer>
-
-
-</div>
-
-
-<!-- ================= JAVASCRIPT ================= -->
-
-<script src="script.js"></script>
-
-
+    <script src="script.js"></script>
 </body>
-
 </html>
+
