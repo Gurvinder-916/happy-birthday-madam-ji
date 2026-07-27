@@ -3,31 +3,14 @@
 ========================= */
 
 window.addEventListener("load", () => {
-
     const loader = document.getElementById("loader");
     const mainContent = document.getElementById("mainContent");
 
-    setTimeout(() => {
-
-    if(loader){
-        loader.style.display = "none";
-    }
-
-    if(mainContent){
+    if (loader) loader.style.display = "none";
+    if (mainContent) {
         mainContent.classList.remove("hidden");
-        mainContent.classList.add("show");
     }
-
-},2500);
-
-        loader.style.display = "none";
-        mainContent.classList.remove("hidden");
-        mainContent.classList.add("show");
-
-    }, 2500);
-
 });
-
 
 /* =========================
    MUSIC CONTROL
